@@ -4,6 +4,7 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
 
           title: new Text('More'),
@@ -280,7 +281,6 @@ class MorePage extends StatelessWidget {
               ),
             ),
           ),
-
 
 
 

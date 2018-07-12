@@ -25,10 +25,13 @@ class TaskSearchBarDemoHome extends StatefulWidget {
 class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
 
   bool _isSearching = false;
+  bool showClearButton = true;
+  bool _clearActive = false;
   final TextEditingController _searchQuery = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey1 = new GlobalKey<ScaffoldState>();
 
   List data;
+
 
   @override
   void initState() {
@@ -92,6 +95,29 @@ class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
 
 
   Widget buildSearchBar() {
+
+
+    this._searchQuery.addListener(() {
+      if (this._searchQuery.text.isEmpty) {
+        // If clear is already disabled, don't disable it
+        if (_clearActive) {
+          setState(() {
+            _clearActive = false;
+          });
+        }
+
+        return;
+      }
+
+      // If clear is already enabled, don't enable it
+      if (!_clearActive) {
+        setState(() {
+          _clearActive = true;
+        });
+      }
+    });
+
+
     return new AppBar(
 
       leading: new BackButton(
@@ -104,11 +130,20 @@ class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
         onSubmitted: (String value){
           onSubmitted(value);
         },
+        keyboardType: TextInputType.text,
         controller: _searchQuery,
         style: TextStyle(color: Colors.white),
         autofocus: true,
         decoration: InputDecoration.collapsed(hintText: 'Search', hintStyle: TextStyle(color: Colors.white70)),
+
       ),
+      actions: !showClearButton ? null : <Widget>[
+        // Show an icon if clear is not active, so there's no ripple on tap
+        new IconButton(
+            icon: new Icon(Icons.clear, color: _clearActive ? Colors.white : Colors.white70),
+            disabledColor: Colors.white70,
+            onPressed: !_clearActive ? null : () { _searchQuery.clear(); })
+      ],
       backgroundColor: Colors.green,
     );
   }
@@ -116,6 +151,7 @@ class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: _isSearching ? buildSearchBar() : buildAppBar(),
       key: _scaffoldKey1,
       body: new ListView.builder(
