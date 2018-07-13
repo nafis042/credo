@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:flutter_map/flutter_map.dart';
+
 
 class TeamPage extends StatefulWidget {
   static const String route = 'map_controller';
@@ -34,10 +35,18 @@ class MapControllerPageState extends State<TeamPage> {
                     minZoom: 3.0
                 ),
                 layers: [
+//                  new TileLayerOptions(
+//                      urlTemplate:
+//                      "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+//                      subdomains: ['a', 'b', 'c']),
                   new TileLayerOptions(
-                      urlTemplate:
-                      "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                      subdomains: ['a', 'b', 'c']),
+                    urlTemplate: "https://api.mapbox.com/v4/"
+                        "{id}/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoibmFmaXMwMDAxIiwiYSI6ImNqOW1rNnhxbTB0N2Yyd250cXJxeGxiMWQifQ.D6rR_E-7XO_OJMsMDUPLXw",
+                    additionalOptions: {
+                      'accessToken': 'pk.eyJ1IjoibmFmaXMwMDAxIiwiYSI6ImNqOW1rNnhxbTB0N2Yyd250cXJxeGxiMWQifQ.D6rR_E-7XO_OJMsMDUPLXw',
+                      'id': 'mapbox.streets',
+                    },
+                  ),
                 ],
               );
 

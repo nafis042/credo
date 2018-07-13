@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_app/ProfilePage.dart';
 class MorePage extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
-
+          backgroundColor: Color(0xFF25C27A),
           title: new Text('More'),
           centerTitle: true),
       body: new ListView(
@@ -19,6 +21,10 @@ class MorePage extends StatelessWidget {
             child: MaterialButton(
               onPressed: () {
                 print("profile");
+                //Navigator.of(context).pushNamed(ProfilePage.tag);
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
               },
               //height: 48,
               height: 65.0,

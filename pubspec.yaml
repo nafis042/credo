@@ -5,7 +5,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_search_bar: "^2.0.4"
+  shared_preferences: "^0.4.2"
+  uri: "^0.11.1"
   flutter_map:
+  flutter_duration_picker: "^1.0.0"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -37,6 +40,14 @@ flutter:
      - assets/manage_agent.png
      - assets/payment.png
      - assets/report.png
+     - assets/phone.png
+     - assets/verify.png
+     - assets/email.png
+     - assets/right.png
+     - assets/teamReg.png
+     - assets/sales.png
+     - assets/car.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

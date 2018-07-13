@@ -2,27 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_app/AddTaskFormPage.dart';
 
-
-
-class TaskPage extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-        theme: new ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
-        home: new TaskSearchBarDemoHome());
-  }
-}
-
-
-class TaskSearchBarDemoHome extends StatefulWidget {
+class TaskPage extends StatefulWidget {
   @override
   _TaskSearchBarDemoHomeState createState() => new _TaskSearchBarDemoHomeState();
 }
 
-class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
+class _TaskSearchBarDemoHomeState extends State<TaskPage> {
 
   bool _isSearching = false;
   bool showClearButton = true;
@@ -170,7 +157,8 @@ class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
                         new Text(data[index]["title"]),
                       ],
                     )
-                )
+                ),
+
 
               ],
             ),
@@ -185,6 +173,9 @@ class _TaskSearchBarDemoHomeState extends State<TaskSearchBarDemoHome> {
         child: MaterialButton(
           onPressed: () {
             print("abc");
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddTaskFormPage()),
+            );
           },
           //height: 48,
           height: 48.0,
