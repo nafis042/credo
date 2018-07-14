@@ -90,7 +90,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
             disabledColor: Colors.white70,
             onPressed: !_clearActive ? null : () { _searchQuery.clear(); })
       ],
-      backgroundColor: Colors.green,
+      backgroundColor: Color(0xFF25C27A),
     );
   }
 
@@ -102,6 +102,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
           tooltip: 'Search',
         ),
         title: new Text('TeamWork'),
+        backgroundColor: Color(0xFF25C27A),
         centerTitle: true,
         actions: [ Row(
           children: <Widget>[

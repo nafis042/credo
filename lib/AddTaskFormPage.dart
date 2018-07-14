@@ -5,13 +5,18 @@ import 'dart:async';
 import 'package:flutter_app/AddTaskFirst.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/SelectFromMapPage.dart';
+import 'package:latlong/latlong.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 class AddTaskFormPage extends StatefulWidget {
 
   String value = "";
   Color taskColor;
   List<UserDetails> selectedUser = [];
-  AddTaskFormPage({Key key, this.value, this.taskColor, this.selectedUser}) : super(key: key);
+  LatLng position;
+  AddTaskFormPage({Key key, this.value, this.taskColor, this.selectedUser, this.position}) : super(key: key);
 
   @override
   AddTaskFormPageState createState() {
@@ -37,6 +42,8 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
   DateTime selectedDate = new DateTime.now();
   TimeOfDay selectedTime = new TimeOfDay.now();
   Duration selectedDuration = Duration(hours: 0, minutes: 30);
+  bool _imageswitchValue = false;
+  bool _attachmentswitchValue = false;
   void initState() {
     super.initState();
   }
@@ -252,8 +259,157 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
           ),
           SeparatorBar(),
 
+          ListTile(
+            leading: Icon(Icons.location_on, color: Color(0xFF404041),) ,
+            title: widget.value == null ? Text('Select Location') :  Text("${widget.value}"),
+            onTap: (){
+              var route = new MaterialPageRoute(
+                builder: (BuildContext context) =>
+                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
+              );
+              Navigator.of(context).push(route);
+            },
+          ),
+          widget.position == null ? SeparatorBar(): Container(),
+
+          widget.position == null ? Container():
+          ListTile(
+            onTap: (){
+              print('tapping');
+              var route = new MaterialPageRoute(
+                builder: (BuildContext context) =>
+                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
+              );
+              Navigator.of(context).push(route);
+            },
+            leading: Icon(Icons.keyboard_arrow_left, color: Color(0xFFFFFF),),
+            title:      Container(
+                height: 200.0,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: <Widget>[
+                    new FlutterMap(
+                      options: new MapOptions(
+                        center: widget.position,
+                        zoom: 15.0,
+                        maxZoom: 22.0,
+                        minZoom: 3.0,
+                        interactive: false,
+                        onTap: (abc){
+                          print('tapped');
+                        },
+
+                      ),
+                      layers: [
+                        new TileLayerOptions(
+                          urlTemplate: "https://api.mapbox.com/v4/"
+                              "{id}/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoibmFmaXMwMDAxIiwiYSI6ImNqOW1rNnhxbTB0N2Yyd250cXJxeGxiMWQifQ.D6rR_E-7XO_OJMsMDUPLXw",
+                          additionalOptions: {
+                            'accessToken': 'pk.eyJ1IjoibmFmaXMwMDAxIiwiYSI6ImNqOW1rNnhxbTB0N2Yyd250cXJxeGxiMWQifQ.D6rR_E-7XO_OJMsMDUPLXw',
+                            'id': 'mapbox.streets',
+                          },
+                        ),
+                        new MarkerLayerOptions(markers: [new Marker(point: widget.position,
+                            builder: (ctx) => new Container(
+                              child: new Image(image: AssetImage('assets/Pin.png'), height: 30.0, width: 30.0,
+
+                              ),
+                            ))]),
+                      ],
+                    ),
+
+                    new Container(
+                      height: 200.0,
+                      width: MediaQuery.of(context).size.width,
+                      color: Color(0xFFFFFF),
+                    )
+                  ],
+                )
 
 
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.repeat, color: Color(0xFF404041),),
+            title:  new TextFormField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: InputBorder.none ,
+                labelStyle: TextStyle(color: Color(0xFF404041)),
+                filled: false,
+                hintText: '',
+                labelText: 'Do not Repeat',
+              ),
+              onSaved: (String value) { print(value); },
+              // validator: _validateName,
+            ),
+          ),
+          SeparatorBar(),
+
+          ListTile(
+            leading: Icon(Icons.camera, color: Color(0xFF404041),),
+            title:  new Text('Require Image'),
+            trailing: new CupertinoSwitch(
+              value: _imageswitchValue,
+              onChanged: (bool value) {
+                setState(() {
+                  _imageswitchValue = value;
+                });
+              },
+            ),
+          ),
+          SeparatorBar(),
+
+          ListTile(
+            leading: Icon(Icons.attachment, color: Color(0xFF404041),),
+            title:  new Text('Require Attachment'),
+            trailing: new CupertinoSwitch(
+              value: _attachmentswitchValue,
+              onChanged: (bool value) {
+                setState(() {
+                  _attachmentswitchValue = value;
+                });
+              },
+            ),
+          ),
+          SeparatorBar(),
+          ListTile(
+            leading: Icon(Icons.subject, color: Color(0xFF404041),),
+            title:  new TextFormField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: InputBorder.none ,
+                labelStyle: TextStyle(color: Color(0xFF404041)),
+                filled: false,
+                hintText: '',
+                labelText: 'Notes',
+              ),
+              onSaved: (String value) { print(value); },
+              // validator: _validateName,
+            ),
+          ),
+          SeparatorBar(),
+          ListTile(
+            leading: Icon(Icons.playlist_add, color: Color(0xFF404041),),
+            title:  new TextFormField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: InputBorder.none ,
+                labelStyle: TextStyle(color: Color(0xFF404041)),
+                filled: false,
+                hintText: '',
+                labelText: 'Important',
+              ),
+              onSaved: (String value) { print(value); },
+              // validator: _validateName,
+            ),
+          ),
+          SeparatorBar(),
+
+
+
+               SizedBox(height: 100.0,)
 
         ],
 

@@ -60,7 +60,7 @@ class TeamRegistrationState extends State<TeamRegistration> {
                 );
 
               },
-              color: Colors.green,
+              color: Color(0xFF25C27A),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 

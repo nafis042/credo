@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             getPreference("team").then(checkValidity);
 
           },
-          color: Colors.green,
+          color: Color(0xFF25C27A),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 

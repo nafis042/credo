@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'AddTaskFormPage.dart';
+import 'package:latlong/latlong.dart';
 
 
 class AddTaskPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class AddTaskPage extends StatefulWidget {
   final  String value;
   final Color taskColor;
   final List<UserDetails> selectedUser;
-
+  final LatLng position;
   @override
   AddTaskPageState createState() => new AddTaskPageState();
 }
@@ -70,7 +71,7 @@ class AddTaskPageState extends State<AddTaskPage> {
 
                  var route = new MaterialPageRoute(
                    builder: (BuildContext context) =>
-                   new AddTaskFormPage(selectedUser: temp, value: widget.value, taskColor: widget.taskColor,),
+                   new AddTaskFormPage(selectedUser: temp, value: widget.value, taskColor: widget.taskColor,position: widget.position),
                  );
                  Navigator.of(context).push(route);
           },

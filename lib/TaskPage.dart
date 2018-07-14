@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app/AddTaskFormPage.dart';
+import 'package:flutter_app/SingleTaskViewPage.dart';
 
 class TaskPage extends StatefulWidget {
   @override
@@ -19,11 +20,110 @@ class _TaskSearchBarDemoHomeState extends State<TaskPage> {
 
   List data;
 
+  List FakeData = [
+
+    {
+      'name': 'Mohammad Hasan\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'job_type': 'Installation',
+      'status': 'In Progress'
+
+    },
+
+
+    {
+      'name': 'Julian\'s Work',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Delayed',
+      'job_type': 'Pickup'
+
+    },
+
+
+    {
+      'name': 'Sundar Pichai\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Posponed',
+      'job_type': 'Sales'
+
+    },
+
+
+    {
+      'name': 'Ahamanat Ahsan\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Unassigned',
+      'job_type': 'Delivery'
+
+    },
+
+    {
+      'name': 'Mohammad Hasan\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'job_type': 'Installation',
+      'status': 'In Progress'
+
+    },
+
+
+    {
+      'name': 'Julian\'s Work',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Delayed',
+      'job_type': 'Pickup'
+
+    },
+
+
+    {
+      'name': 'Sundar Pichai\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Posponed',
+      'job_type': 'Sales'
+
+    },
+
+
+    {
+      'name': 'Ahamanat Ahsan\'s House',
+      'time': 'Today • 5:15pm • 1:00 hour',
+      'address': '16/9, Block A, Baridhara, Dhaka',
+      'status': 'Unassigned',
+      'job_type': 'Delivery'
+
+    },
+
+
+
+  ];
+
+  CheckBorderColor(String input){
+    if(input[0] == 'I'){
+      return Color(0xFF85DBF3);
+    }
+    else if(input[0] == 'U'){
+      return Color(0xFFF491B2);
+    }
+    else if(input[0] == 'D'){
+      return Color(0xFFFCBA9A);
+    }
+    else if(input[0] == 'P'){
+      return Color(0xFF757575);
+    }
+  }
+
 
   @override
   void initState() {
     super.initState();
-    this.getData();
+    //this.getData();
   }
 
   Future<String> getData() async {
@@ -40,6 +140,23 @@ class _TaskSearchBarDemoHomeState extends State<TaskPage> {
     print(data[1]["title"]);
 
     return "Success!";
+  }
+
+  CheckColor(int index){
+    switch(index % 6){
+      case 0:
+        return Color(0xFF1EBCE9);
+      case 1:
+        return Color(0xFF715DC8);
+      case 2:
+        return Color(0xFFB00020);
+      case 3:
+        return Color(0xFF25C27A);
+      case 4:
+        return Color(0xFFFFA726);
+      case 5:
+        return Color(0xFF37474F);
+    }
   }
 
 
@@ -65,6 +182,7 @@ class _TaskSearchBarDemoHomeState extends State<TaskPage> {
         tooltip: 'Search',
       ),
         title: new Text('Tasks'),
+        backgroundColor: Color(0xFF25C27A),
         centerTitle: true,
         );
   }
@@ -142,26 +260,69 @@ class _TaskSearchBarDemoHomeState extends State<TaskPage> {
       appBar: _isSearching ? buildSearchBar() : buildAppBar(),
       key: _scaffoldKey1,
       body: new ListView.builder(
-        itemCount: data == null ? 0 : data.length,
+        itemCount: FakeData == null ? 0 : FakeData.length,
         itemBuilder: (BuildContext context, int index) {
-          return new Card(
-            child: Row(
+          return new ListTile(
+            onTap: (){
+              print('tapped');
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SingleTaskViewPage()),
+              );
+            },
+            isThreeLine: true,
+            title: Text(FakeData[index]['name']),
+            subtitle: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 90.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(FakeData[index]['time']),
+                  Text(FakeData[index]['address']),
+                  Row(
+                    children: <Widget>[
+                      Material(
+                        color: CheckColor(index),
+                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                        child: Container(
+                          height: 24.0,
+                          width: 24.0,
+                          child: Center(
 
-              children: <Widget>[
+                            child: Text(FakeData[index]['job_type'][0], style: TextStyle(color: Colors.white),),
+                          ),
+                        ),
 
-                Image(image: AssetImage("assets/profile_image.png"), height: 45.0),
-                SizedBox(width: 16.0,),
-                new Flexible(
-                    child: Column(
-                      children: <Widget>[
-                        new Text(data[index]["title"]),
-                      ],
-                    )
-                ),
+                      ),
+                      SizedBox(width: 16.0),
+                      Text(FakeData[index]['job_type'])
+                    ],
+                  ),
 
-
-              ],
+                ],
+              ),
             ),
+            trailing:
+                  Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+
+                          OutlineButton(
+                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
+                            borderSide: BorderSide(color: CheckBorderColor(FakeData[index]['status']), width: 2.0),
+                            highlightColor: Colors.white,
+                            onPressed: () {
+                              print("free");
+                            },
+                            child: Text(FakeData[index]['status'], style: TextStyle(color: CheckBorderColor(FakeData[index]['status']), fontSize: 12.0),),
+                          ),
+                          SizedBox(height: 8.0,),
+                          Image(image: AssetImage('assets/profile_image.png'), height: 50.0, width: 50.0,)
+                        ],
+                    ),
+                  )
+
 
 
           );

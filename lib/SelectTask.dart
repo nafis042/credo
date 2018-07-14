@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/AddTaskFormPage.dart';
 import 'package:flutter_app/AddTaskFirst.dart';
+import 'package:latlong/latlong.dart';
 
 class SelectTaskPage extends StatefulWidget {
 
-  SelectTaskPage({Key key, this.value, this.taskColor, this.selectedUser}) : super(key: key);
+  SelectTaskPage({Key key, this.value, this.taskColor, this.selectedUser, this.position}) : super(key: key);
   final String value;
   final Color taskColor;
   final List<UserDetails> selectedUser;
+  final LatLng position;
 
   @override
   SelectTaskPageState createState() => new SelectTaskPageState();
@@ -144,7 +146,8 @@ class SelectTaskPageState extends State<SelectTaskPage> {
 
                       var route = new MaterialPageRoute(
                         builder: (BuildContext context) =>
-                        new AddTaskFormPage(value: _userDetails[index], taskColor: CheckColor(index), selectedUser: widget.selectedUser,),
+                        new AddTaskFormPage(value: _userDetails[index], taskColor: CheckColor(index), selectedUser: widget.selectedUser,
+                        position: widget.position,),
                       );
                       Navigator.of(context).push(route);
 

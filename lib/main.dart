@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       home: LoginPage(),
+      //home: HomePage(),
       routes: routes,
     );
   }
