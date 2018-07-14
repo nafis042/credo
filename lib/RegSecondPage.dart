@@ -81,9 +81,10 @@ class RegSecondPageState extends State<RegSecondPage> {
                       decoration: const InputDecoration(
                         border: InputBorder.none ,
                         filled: false,
-                        icon: const Icon(Icons.account_circle),
+                        icon: const Icon(Icons.account_circle, color: Color(0xFF404041),),
                         hintText: 'What do people call you?',
                         labelText: 'Full Name',
+                          labelStyle: TextStyle(color: Color(0xFF404041))
                       ),
                       onSaved: (String value) { print(value); },
                       // validator: _validateName,
@@ -97,9 +98,10 @@ class RegSecondPageState extends State<RegSecondPage> {
                       decoration: const InputDecoration(
                         border: InputBorder.none ,
                         filled: false,
-                        icon: const Icon(Icons.phone),
+                        icon: const Icon(Icons.phone, color: Color(0xFF404041)),
                         hintText: 'Which number people call you?',
                         labelText: 'Phone Number',
+                          labelStyle: TextStyle(color: Color(0xFF404041))
                       ),
                       onSaved: (String value) { print(value); },
                       // validator: _validateName,
@@ -111,9 +113,10 @@ class RegSecondPageState extends State<RegSecondPage> {
                       decoration: const InputDecoration(
                         border: InputBorder.none ,
                         filled: false,
-                        icon: const Icon(Icons.email),
+                        icon: const Icon(Icons.email, color: Color(0xFF404041)),
                         hintText: 'Give your email here',
                         labelText: 'Email',
+                          labelStyle: TextStyle(color: Color(0xFF404041))
                       ),
                       onSaved: (String value) { print(value); },
                       // validator: _validateName,
@@ -124,9 +127,10 @@ class RegSecondPageState extends State<RegSecondPage> {
                       decoration: const InputDecoration(
                         border: InputBorder.none ,
                         filled: false,
-                        icon: const Icon(Icons.alternate_email),
+                        icon: const Icon(Icons.alternate_email, color: Color(0xFF404041)),
                         hintText: 'Give your company name',
                         labelText: 'Company Name',
+                        labelStyle: TextStyle(color: Color(0xFF404041))
                       ),
                       onSaved: (String value) { print(value); },
                       // validator: _validateName,

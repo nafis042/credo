@@ -183,6 +183,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                         OutlineButton(
+                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                           padding: EdgeInsets.only(left: 40.0, right: 40.0),
                           borderSide: BorderSide(color: Colors.green, width: 2.0),
                           highlightColor: Colors.white,
@@ -202,6 +203,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                         ),
 
                         OutlineButton(
+                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                           padding: EdgeInsets.only(left: 40.0, right: 40.0),
                           borderSide: BorderSide(color: Color(0xFF1EBCE9), width: 2.0),
                           highlightColor: Colors.white,
@@ -228,6 +230,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 50.0, right: 50.0),
                         borderSide: BorderSide(color: Color(0xFFFA8045), width: 2.0),
                         highlightColor: Colors.white,
@@ -247,6 +250,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                       ),
 
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 45.0, right: 45.0),
                         borderSide: BorderSide(color: Color(0xFFB00020), width: 2.0),
                         highlightColor: Colors.white,
@@ -337,6 +341,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 53.0, right: 53.0),
                         borderSide: BorderSide(color: Colors.green, width: 2.0),
                         highlightColor: Colors.white,
@@ -356,6 +361,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                       ),
 
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 51.0, right: 51.0),
                         borderSide: BorderSide(color: Color(0xFF1EBCE9), width: 2.0),
                         highlightColor: Colors.white,
@@ -382,6 +388,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 53.0, right: 53.0),
                         borderSide: BorderSide(color: Color(0xFFFA8045), width: 2.0),
                         highlightColor: Colors.white,
@@ -401,6 +408,7 @@ class _SearchBarDemoHomeState extends State<SearchBarDemoHome>{
                       ),
 
                       OutlineButton(
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(6.0)),
                         padding: EdgeInsets.only(left: 34.0, right: 34.0),
                         borderSide: BorderSide(color: Color(0xFFB00020), width: 2.0),
                         highlightColor: Colors.white,

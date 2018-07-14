@@ -125,11 +125,13 @@ class SelectFromMapPageState extends State<SelectFromMapPage>{
                         print('map debug');
 
                         print(centerPosition);
-                        var route = new MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                          new AddTaskFormPage(selectedUser: widget.selectedUser, value: widget.value, taskColor: widget.taskColor, position: centerPosition),
-                        );
-                        Navigator.of(context).push(route);
+                        var temp = {'location': centerPosition, 'name': address.contains('Search Address Here') == true? "Selected From Map" : address};
+                        Navigator.pop(context, temp);
+//                        var route = new MaterialPageRoute(
+//                          builder: (BuildContext context) =>
+//                          new AddTaskFormPage(selectedUser: widget.selectedUser, value: widget.value, taskColor: widget.taskColor, position: centerPosition),
+//                        );
+//                        Navigator.of(context).push(route);
 
 
                   },

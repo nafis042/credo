@@ -59,9 +59,10 @@ class RegThirdPageState extends State<RegThirdPage> {
                 decoration: const InputDecoration(
                   border: InputBorder.none ,
                   filled: false,
-                  icon: const Icon(Icons.group),
+                  icon: const Icon(Icons.group, color: Color(0xFF404041),),
                   hintText: 'Give the name of your team',
                   labelText: 'Your Team Name',
+                    labelStyle: TextStyle(color: Color(0xFF404041))
                 ),
                 onSaved: (String value) { print(value); },
                 // validator: _validateName,

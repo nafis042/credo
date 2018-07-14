@@ -16,6 +16,7 @@ class AddTaskFormPage extends StatefulWidget {
   Color taskColor;
   List<UserDetails> selectedUser = [];
   LatLng position;
+
   AddTaskFormPage({Key key, this.value, this.taskColor, this.selectedUser, this.position}) : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
   final TextEditingController phoneController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController companyController = new TextEditingController();
+  String address = "";
   DateTime selectedDate = new DateTime.now();
   TimeOfDay selectedTime = new TimeOfDay.now();
   Duration selectedDuration = Duration(hours: 0, minutes: 30);
@@ -46,6 +48,24 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
   bool _attachmentswitchValue = false;
   void initState() {
     super.initState();
+  }
+
+  _navigateAndDisplaySelection(BuildContext context) async{
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SelectFromMapPage()),
+    );
+
+    // After the Selection Screen returns a result, show it in a Snackbar!
+    setState(() {
+      print(result);
+      widget.position = result['location'];
+      address = result['name'];
+    });
+
+
+
+    //Scaffold.of(context).showSnackBar(SnackBar(content: Text("$result")));
   }
 
   Widget build(BuildContext context) {
@@ -261,13 +281,14 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
 
           ListTile(
             leading: Icon(Icons.location_on, color: Color(0xFF404041),) ,
-            title: widget.value == null ? Text('Select Location') :  Text("${widget.value}"),
+            title: widget.position == null ? Text('Select Location') :  Text("$address"),
             onTap: (){
-              var route = new MaterialPageRoute(
-                builder: (BuildContext context) =>
-                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
-              );
-              Navigator.of(context).push(route);
+//              var route = new MaterialPageRoute(
+//                builder: (BuildContext context) =>
+//                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
+//              );
+//              Navigator.of(context).push(route);
+              _navigateAndDisplaySelection(context);
             },
           ),
           widget.position == null ? SeparatorBar(): Container(),
@@ -276,11 +297,12 @@ class AddTaskFormPageState extends State<AddTaskFormPage> {
           ListTile(
             onTap: (){
               print('tapping');
-              var route = new MaterialPageRoute(
-                builder: (BuildContext context) =>
-                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
-              );
-              Navigator.of(context).push(route);
+//              var route = new MaterialPageRoute(
+//                builder: (BuildContext context) =>
+//                new SelectFromMapPage(value: widget.value, selectedUser: widget.selectedUser, taskColor: widget.taskColor,),
+//              );
+//              Navigator.of(context).push(route);
+              _navigateAndDisplaySelection(context);
             },
             leading: Icon(Icons.keyboard_arrow_left, color: Color(0xFFFFFF),),
             title:      Container(
